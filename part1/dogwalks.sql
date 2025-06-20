@@ -15,7 +15,7 @@ CREATE TABLE Dogs (                                     -- stores all DOGS
     owner_id INT NOT NULL,                              -- Links which user owns the dog (Via FK to users table)
     name VARCHAR(50) NOT NULL,                          -- dog name
     size ENUM('small', 'medium', 'large') NOT NULL,     -- dog size (small, med or lrg)
-    FOREIGN KEY (owner_id) REFERENCES Users(user_id)    -- 
+    FOREIGN KEY (owner_id) REFERENCES Users(user_id)    -- FK. to ensure all dogs must have a user
 );
 
 CREATE TABLE WalkRequests (
