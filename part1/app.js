@@ -155,7 +155,7 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
-// Route 2 for /api/dogs
+// Route 2 for /api/walkrequests/open
 app.get('/api/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
