@@ -24,7 +24,7 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
     requested_time DATETIME NOT NULL,                   -- when walk was requested
     duration_minutes INT NOT NULL,                      -- how long the walk was
     location VARCHAR(255) NOT NULL,                     -- location of dog?
-    status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',   -- status of dog request
+    status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',   -- status of walk request
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- records when request was created
     FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)        -- FK. to link back to a specific dog
 );
@@ -34,8 +34,8 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
     request_id INT NOT NULL,                            -- which walk request is being applied ot (links to walkRequest table)
     walker_id INT NOT NULL,                             -- which walker is applyinhg
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- when walk was requested
-    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
-    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',   -- status of walk applcation
+    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),       -- 
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),
     CONSTRAINT unique_application UNIQUE (request_id, walker_id)
 );
