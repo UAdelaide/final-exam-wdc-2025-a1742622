@@ -22,8 +22,8 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
     request_id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each wqalk request
     dog_id INT NOT NULL,                                -- which dog needs walking (Links to dog table)
     requested_time DATETIME NOT NULL,                   -- when walk was requested
-    duration_minutes INT NOT NULL,                      -- 
-    location VARCHAR(255) NOT NULL,
+    duration_minutes INT NOT NULL,                      -- how long the walk was
+    location VARCHAR(255) NOT NULL,                     -- location of dog?
     status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)
