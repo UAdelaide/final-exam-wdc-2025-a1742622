@@ -1,16 +1,16 @@
 DROP DATABASE IF EXISTS DogWalkService;
 CREATE DATABASE DogWalkService;
 USE DogWalkService;
-CREATE TABLE Users (                                    -- stores all users
+CREATE TABLE Users (                                    -- stores all USERS
     user_id INT AUTO_INCREMENT PRIMARY KEY,             -- Unique ID for each person
     username VARCHAR(50) UNIQUE NOT NULL,               -- username
     email VARCHAR(100) UNIQUE NOT NULL,                 -- email
     password_hash VARCHAR(255) NOT NULL,                -- encrypted password storage
     role ENUM('owner', 'walker') NOT NULL,              -- user's role whether they are a "walker" or an "owner"
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP      -- 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP      -- records when account was made/
 );
 
-CREATE TABLE Dogs (
+CREATE TABLE Dogs (                                     -- stores all DOGS
     dog_id INT AUTO_INCREMENT PRIMARY KEY,
     owner_id INT NOT NULL,
     name VARCHAR(50) NOT NULL,
