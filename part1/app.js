@@ -178,21 +178,36 @@ app.get('/api/walkrequests/open', async (req, res) => {
   }
 });
 
-// Route 1 for /api/dogs
-app.get('/api/dogs', async (req, res) => {
+// Route 3: /api/walkers/summary - Return walker summary with ratings and completed walks
+app.get('/api/walkers/summary', async (req, res) => {
   try {
-    const [dogs] = await db.execute(`
+    const [walkers] = await db.execute(`
         SELECT
-            d.name as dog_name,
-            d.size,
-            u.username as owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id
-      ORDER BY d.name
+            u.username as walker_username,
+            COALESCE(COUNT(wr.rating_id), 0) as total_ratings,
+            CASE
+                WHEN COUNT(wr.rating_id) > 0 THEN ROUND(AVG(wr.rating), 1)
+                ELSE NULL
+            END as average_rating,
+            COALESCE(completed_walks.walk_count, 0) as completed_walks
+        FROM Users u
+        LEFT JOIN WalkRatings wr ON u.user_id = wr.walker_id
+        LEFT JOIN (
+        SELECT
+          wa.walker_id,
+          COUNT(*) as walk_count
+        FROM WalkApplications wa
+        JOIN WalkRequests wreq ON wa.request_id = wreq.request_id
+        WHERE wa.status = 'accepted' AND wreq.status = 'completed'
+        GROUP BY wa.walker_id
+      ) completed_walks ON u.user_id = completed_walks.walker_id
+      WHERE u.role = 'walker'
+      GROUP BY u.user_id, u.username, completed_walks.walk_count
+      ORDER BY u.username
     `);
-    res.json(dogs);
+    res.json(walkers);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch dogs' });
+    res.status(500).json({ error: 'Failed to fetch walker summary' });
   }
 });
 
