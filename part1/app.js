@@ -111,6 +111,7 @@ let db;
         ('veronica123', 'veronica@example.com', 'hashed654', 'owner')
       `);
 
+      // insert dogs
       await db.execute(`
         INSERT INTO Dogs (owner_id, name, size) VALUES
         ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
@@ -119,6 +120,17 @@ let db;
         ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Paris', 'small'),
         ((SELECT user_id FROM Users WHERE username = 'veronica123'), 'Doggo', 'large')
       `);
+
+// insert walk requests
+      await db.execute(`
+        INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+        ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
+        ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted'),
+        ((SELECT dog_id FROM Dogs WHERE name = 'Pacup'), '2025-06-10 10:30:00', 60, 'Parklands', 'open'),
+        ((SELECT dog_id FROM Dogs WHERE name = 'Paris'), '2025-06-10 11:30:00', 45, 'Parklands', 'open'),
+        ((SELECT dog_id FROM Dogs WHERE name = 'Doggo'), '2025-06-08 12:00:00', 60, 'SomeBeach', 'completed')
+      `);
+
     }
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
