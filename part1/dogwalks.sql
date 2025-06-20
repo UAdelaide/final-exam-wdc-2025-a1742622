@@ -12,7 +12,7 @@ CREATE TABLE Users (                                    -- stores all USERS
 
 CREATE TABLE Dogs (                                     -- stores all DOGS
     dog_id INT AUTO_INCREMENT PRIMARY KEY,              -- Unique id for each dog
-    owner_id INT NOT NULL,                              -- FK:
+    owner_id INT NOT NULL,                              -- FK to
     name VARCHAR(50) NOT NULL,
     size ENUM('small', 'medium', 'large') NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
