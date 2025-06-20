@@ -59,4 +59,5 @@ CREATE TABLE WalkRatings (                                              -- store
 -- Adding new data for question 5
 
 -- Users:
-INSERT INTO Users (user)
+INSERT INTO Users (username, email, password_hash, role) VALUES
+('alice123', 'alice@example.copm')
