@@ -37,11 +37,11 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',   -- status of walk applcation
     FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),       -- FK. walk request actually exists
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),                  -- FK. walk request connects to a user
-    CONSTRAINT unique_application UNIQUE (request_id, walker_id)        -- 
+    CONSTRAINT unique_application UNIQUE (request_id, walker_id)        -- walker cannot apply to the same reuqest twice
 );
 
 CREATE TABLE WalkRatings (
-    rating_id INT AUTO_INCREMENT PRIMARY KEY,
+    rating_id INT AUTO_INCREMENT PRIMARY KEY,                           
     request_id INT NOT NULL,
     walker_id INT NOT NULL,
     owner_id INT NOT NULL,
