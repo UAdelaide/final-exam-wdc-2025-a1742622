@@ -75,8 +75,9 @@ let db;
         walker_id INT NOT NULL,
         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
-        FOREIGN KEY (request_id) REFERENCES Users(dog_id)
-        FOREIGN KEY (walker_id) REFERENCES Dogs(dog_id)
+        FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id)
+        FOREIGN KEY (walker_id) REFERENCES Users(dog_id)
+        CONSTRAINT
       )
     `);
 
