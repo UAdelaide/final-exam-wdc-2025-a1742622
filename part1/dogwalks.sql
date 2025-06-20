@@ -12,8 +12,8 @@ CREATE TABLE Users (                                    -- stores all USERS
 
 CREATE TABLE Dogs (                                     -- stores all DOGS
     dog_id INT AUTO_INCREMENT PRIMARY KEY,              -- Unique id for each dog
-    owner_id INT NOT NULL,                              -- FK to
-    name VARCHAR(50) NOT NULL,
+    owner_id INT NOT NULL,                              -- Links which user owns the dog (Via FK to users table)
+    name VARCHAR(50) NOT NULL,                          -- dog name
     size ENUM('small', 'medium', 'large') NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
 );
