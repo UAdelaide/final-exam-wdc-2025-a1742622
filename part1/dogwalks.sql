@@ -57,3 +57,6 @@ CREATE TABLE WalkRatings (                                              -- store
 
 
 -- Adding new data for question 5
+
+-- Users:
+INSERT INTO Users (user)
