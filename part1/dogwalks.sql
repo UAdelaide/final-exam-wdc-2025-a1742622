@@ -33,7 +33,7 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
     application_id INT AUTO_INCREMENT PRIMARY KEY,      -- Uniqie ID for each walk request
     request_id INT NOT NULL,                            -- which walk request is being applied ot (links to walkRequest table)
     walker_id INT NOT NULL,                             -- which walker is applyinhg
-    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- when walk was re quest
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- when walk was requested
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
     FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),
