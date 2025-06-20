@@ -30,8 +30,8 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
 );
 
 CREATE TABLE WalkApplications (                         -- stores when walkers want to walk an owners dog
-    application_id INT AUTO_INCREMENT PRIMARY KEY,      -- 
-    request_id INT NOT NULL,
+    application_id INT AUTO_INCREMENT PRIMARY KEY,      -- Uniqie ID for each walk request
+    request_id INT NOT NULL,                            -- 
     walker_id INT NOT NULL,
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
