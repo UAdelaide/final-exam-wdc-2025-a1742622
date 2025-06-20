@@ -40,8 +40,8 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
     CONSTRAINT unique_application UNIQUE (request_id, walker_id)        -- walker cannot apply to the same reuqest twice
 );
 
-CREATE TABLE WalkRatings (
-    rating_id INT AUTO_INCREMENT PRIMARY KEY,                           
+CREATE TABLE WalkRatings (                                              -- stores all WALKRATINGS
+    rating_id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT NOT NULL,
     walker_id INT NOT NULL,
     owner_id INT NOT NULL,
