@@ -36,8 +36,8 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- when walk was requested
     status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',   -- status of walk applcation
     FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),       -- FK. walk request actually exists
-    FOREIGN KEY (walker_id) REFERENCES Users(user_id),
-    CONSTRAINT unique_application UNIQUE (request_id, walker_id)
+    FOREIGN KEY (walker_id) REFERENCES Users(user_id),                  
+    CONSTRAINT unique_application UNIQUE (request_id, walker_id)        --
 );
 
 CREATE TABLE WalkRatings (
