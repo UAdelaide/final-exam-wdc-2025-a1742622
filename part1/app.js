@@ -74,7 +74,7 @@ let db;
         request_id INT NOT NULL,
         walker_id INT NOT NULL,
         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',
+        status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
         email VARCHAR (100) UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
         role ENUM('owner', 'walker') NOT NULL,
