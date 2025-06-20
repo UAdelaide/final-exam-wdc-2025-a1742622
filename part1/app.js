@@ -62,8 +62,8 @@ let db;
         dog_id INT NOT NULL,
         requested_time DATETIME NOT NULL,
         duration_minutes INT NOT NULL,
-        name VARCHAR(50) NOT NULL,
-        size ENUM('small', 'medium', 'large') NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        STATUS ENUM('small', 'medium', 'large') NOT NULL,
         FOREIGN KEY (owner_id) REFERENCES Users(user_id)
       )
     `);
