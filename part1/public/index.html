@@ -133,7 +133,6 @@
             border-radius: 10px;
             object-fit: cover;
             border: 3px solid #ddd;
-            cursor: pointer;
             margin-bottom: 15px;
         }
 
@@ -244,12 +243,7 @@
                                 :src="dogImage"
                                 class="dog-image"
                                 alt="Dog of the Day"
-                                @click="fetchNewDog"
                             >
-                            <div class="dog-text">Click the image to get a new dog!</div>
-                                <button type="button" class="btn" @click="fetchNewDog">
-                                    Get New Dog of the Day
-                                </button>
                         </div>
                     </div>
 
