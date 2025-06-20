@@ -50,6 +50,6 @@ CREATE TABLE WalkRatings (                                              -- store
     rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                       -- created at
     FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),       -- FK. walk being completed
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),                  -- FK. walker who walked the dog
-    FOREIGN KEY (owner_id) REFERENCES Users(user_id),                   -- FK.
-    CONSTRAINT unique_rating_per_walk UNIQUE (request_id)
+    FOREIGN KEY (owner_id) REFERENCES Users(user_id),                   -- FK. Dow owner giving the rating
+    CONSTRAINT unique_rating_per_walk UNIQUE (request_id)               -- 
 );
