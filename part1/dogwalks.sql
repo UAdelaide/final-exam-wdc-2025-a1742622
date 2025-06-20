@@ -76,4 +76,4 @@ INSERT INTO Dogs (owner_id, name, size) VALUES
 
 -- Wallk Requests:
 INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
-((SELECT dog_))
+((SELECT dog_id FROM Dogs WHERE name = 'Max')), ''
