@@ -26,10 +26,10 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
     location VARCHAR(255) NOT NULL,                     -- location of dog?
     status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',   -- status of dog request
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- records when request was created
-    FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)        -- FK. to ensure all 
+    FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)        -- FK. to link back to a specific dog
 );
 
-CREATE TABLE WalkApplications (
+CREATE TABLE WalkApplications (                         -- stores when walkers want 
     application_id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT NOT NULL,
     walker_id INT NOT NULL,
