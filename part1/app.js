@@ -63,7 +63,7 @@ let db;
         requested_time DATETIME NOT NULL,
         duration_minutes INT NOT NULL,
         location VARCHAR(255) NOT NULL,
-        STATUS ENUM('small', 'medium', 'large') NOT NULL,
+        status ENUM('open', 'accepted', 'completed', 'cancelled') NOT NULL,
         FOREIGN KEY (owner_id) REFERENCES Users(user_id)
       )
     `);
