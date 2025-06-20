@@ -191,25 +191,23 @@
                     </div>
                 </div>
 
-<body>
-    <div id="app">
-        <div class="container">
-            <div class="content">
-                <!-- LEFT SIDE: Service Info -->
-                <div class="left-side">
-                    <div class="service-header">
-                        <h1>Our Dog Walking Service</h1>
-                        <p>Ensuring your dog gets the best treatment!</p>
-                    </div>
-
-                    <div class="section">
-                        <h3>What We Offer:</h3>
-                        <ul>
-                            <li> Daily dog walks </li>
-                            <li> Exercise and playtime </li>
-                            <li> Pet sitting services </li>
-                            <li> Training and treats </li>
-                        </ul>
+                <!-- RIGHT SIDE: Dog of the Day & Contact -->
+                <div class="right-side">
+                    <div class="dog-section">
+                        <h2>Dog of the Day</h2>
+                        <div v-if="loading" class="loading">Loading dog image...</div>
+                        <div v-else>
+                            <img
+                                :src="dogImage"
+                                class="dog-image"
+                                alt="Dog of the Day"
+                                @click="fetchNewDog"
+                            >
+                            <div class="dog-text">Click the image to get a new dog!</div>
+                            <button class="btn" @click="fetchNewDog">
+                                Get New Dog of the Day
+                            </button>
+                        </div>
                     </div>
 
                     <div class="section">
