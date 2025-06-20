@@ -53,3 +53,7 @@ CREATE TABLE WalkRatings (                                              -- store
     FOREIGN KEY (owner_id) REFERENCES Users(user_id),                   -- FK. Dow owner giving the rating
     CONSTRAINT unique_rating_per_walk UNIQUE (request_id)               -- each walk can only have 1 rating
 );
+
+
+
+-- Adding new data for 
