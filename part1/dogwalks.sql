@@ -24,8 +24,8 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
     requested_time DATETIME NOT NULL,                   -- when walk was requested
     duration_minutes INT NOT NULL,                      -- how long the walk was
     location VARCHAR(255) NOT NULL,                     -- location of dog?
-    status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',   -- status of
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',   -- status of dog request
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- records when request was created
     FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)
 );
 
