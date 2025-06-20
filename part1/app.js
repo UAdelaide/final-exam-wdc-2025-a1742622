@@ -111,7 +111,14 @@ let db;
         ('veronica123', 'veronica@example.com', 'hashed654', 'owner')
       `);
 
-      
+      await db.execute(`
+        INSERT INTO Dogs (owner_id, name, size) VALUES
+        ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+        ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
+        ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Pacup', 'medium'),
+        ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Paris', 'small'),
+        ((SELECT user_id FROM Users WHERE username = 'veronica123'), 'Doggo', 'large')
+      `);
     }
   } catch (err) {
     console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
