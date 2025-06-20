@@ -6,8 +6,8 @@ CREATE TABLE Users (                                    -- stores all users
     username VARCHAR(50) UNIQUE NOT NULL,               -- username
     email VARCHAR(100) UNIQUE NOT NULL,                 -- email
     password_hash VARCHAR(255) NOT NULL,                -- encrypted password storage
-    role ENUM('owner', 'walker') NOT NULL,              -- user's role
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    role ENUM('owner', 'walker') NOT NULL,              -- user's role whether they are a "walker" or an "owner"
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP      -- 
 );
 
 CREATE TABLE Dogs (
