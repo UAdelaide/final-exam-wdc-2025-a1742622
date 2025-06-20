@@ -162,10 +162,10 @@ app.get('/api/walkrequests/open', async (req, res) => {
         SELECT
           wr.request_id,
           d.name as dog_name,
-            wr.requested_time,
-        wr.duration_minutes,
-        wr.location,
-        u.username as owner_username
+          wr.requested_time,
+          wr.duration_minutes,
+          wr.location,
+          u.username as owner_username
         FROM WalkRequests wr
         JOIN Dogs d ON wr.dog_id = d.dog_id
         JOIN Users u ON d.owner_id = u.user_id
@@ -183,13 +183,13 @@ app.get('/api/walkers/summary', async (req, res) => {
   try {
     const [walkers] = await db.execute(`
         SELECT
-            u.username as walker_username,
-            COALESCE(COUNT(wr.rating_id), 0) as total_ratings,
-            CASE
-                WHEN COUNT(wr.rating_id) > 0 THEN ROUND(AVG(wr.rating), 1)
-                ELSE NULL
-            END as average_rating,
-            COALESCE(completed_walks.walk_count, 0) as completed_walks
+          u.username as walker_username,
+          COALESCE(COUNT(wr.rating_id), 0) as total_ratings,
+          CASE
+            WHEN COUNT(wr.rating_id) > 0 THEN ROUND(AVG(wr.rating), 1)
+            ELSE NULL
+          END as average_rating,
+          COALESCE(completed_walks.walk_count, 0) as completed_walks
         FROM Users u
         LEFT JOIN WalkRatings wr ON u.user_id = wr.walker_id
         LEFT JOIN (
