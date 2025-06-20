@@ -18,7 +18,7 @@ CREATE TABLE Dogs (                                     -- stores all DOGS
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)    -- FK. to ensure all dogs must have a user
 );
 
-CREATE TABLE WalkRequests (
+CREATE TABLE WalkRequests (                             -- stores 
     request_id INT AUTO_INCREMENT PRIMARY KEY,
     dog_id INT NOT NULL,
     requested_time DATETIME NOT NULL,
