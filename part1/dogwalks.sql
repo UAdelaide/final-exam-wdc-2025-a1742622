@@ -45,8 +45,8 @@ CREATE TABLE WalkRatings (                                              -- store
     request_id INT NOT NULL,                                            -- which request is being rated (links to request table)
     walker_id INT NOT NULL,                                             -- which walker is being rated (links to walker table)
     owner_id INT NOT NULL,                                              -- which owner is being rated (links to owner table)
-    rating INT CHECK (rating BETWEEN 1 AND 5),
-    comments TEXT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),                          -- the rating
+    comments TEXT,                                                      -- the comment
     rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),
