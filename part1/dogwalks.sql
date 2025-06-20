@@ -20,7 +20,7 @@ CREATE TABLE Dogs (                                     -- stores all DOGS
 
 CREATE TABLE WalkRequests (                             -- stores when owners need somone to walk their dog
     request_id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each wqalk request
-    dog_id INT NOT NULL,
+    dog_id INT NOT NULL,                                -- which dog needs walking (Links to Dog ID)
     requested_time DATETIME NOT NULL,
     duration_minutes INT NOT NULL,
     location VARCHAR(255) NOT NULL,
