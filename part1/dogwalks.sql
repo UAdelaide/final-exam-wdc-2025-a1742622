@@ -12,7 +12,7 @@ CREATE TABLE Users (                                    -- stores all USERS
 
 CREATE TABLE Dogs (                                     -- stores all DOGS
     dog_id INT AUTO_INCREMENT PRIMARY KEY,              -- Unique id for each dog
-    owner_id INT NOT NULL,                              -- Links which user owns the dog (Via FK to users table)
+    owner_id INT NOT NULL,                              -- which user owns the dog (Links to users table)
     name VARCHAR(50) NOT NULL,                          -- dog name
     size ENUM('small', 'medium', 'large') NOT NULL,     -- dog size (small, med or lrg)
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)    -- FK. to ensure all dogs must have a user
@@ -22,7 +22,7 @@ CREATE TABLE WalkRequests (                             -- stores when owners ne
     request_id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each wqalk request
     dog_id INT NOT NULL,                                -- which dog needs walking (Links to dog table)
     requested_time DATETIME NOT NULL,                   -- when walk was requested
-    duration_minutes INT NOT NULL,
+    duration_minutes INT NOT NULL,                      -- 
     location VARCHAR(255) NOT NULL,
     status ENUM('open', 'accepted', 'completed', 'cancelled') DEFAULT 'open',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
