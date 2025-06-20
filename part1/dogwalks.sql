@@ -43,8 +43,8 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
 CREATE TABLE WalkRatings (                                              -- stores all WALKRATINGS
     rating_id INT AUTO_INCREMENT PRIMARY KEY,                           -- Unique ID for each rating
     request_id INT NOT NULL,                                            -- which request is being rated (links to request table)
-    walker_id INT NOT NULL,
-    owner_id INT NOT NULL,
+    walker_id INT NOT NULL,                                             -- which walker is being rated (links to walker table)
+    owner_id INT NOT NULL,                                              -- which owner is being rated (links to owner table)
     rating INT CHECK (rating BETWEEN 1 AND 5),
     comments TEXT,
     rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
