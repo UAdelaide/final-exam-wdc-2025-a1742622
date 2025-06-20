@@ -41,8 +41,8 @@ CREATE TABLE WalkApplications (                         -- stores when walkers w
 );
 
 CREATE TABLE WalkRatings (                                              -- stores all WALKRATINGS
-    rating_id INT AUTO_INCREMENT PRIMARY KEY,
-    request_id INT NOT NULL,
+    rating_id INT AUTO_INCREMENT PRIMARY KEY,                           -- Unique ID for each rating
+    request_id INT NOT NULL,                                            -- which walk request is being applied ot (links to walkRequest table)
     walker_id INT NOT NULL,
     owner_id INT NOT NULL,
     rating INT CHECK (rating BETWEEN 1 AND 5),
