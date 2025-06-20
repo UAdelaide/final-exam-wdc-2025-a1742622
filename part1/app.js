@@ -70,7 +70,9 @@ let db;
 
     await db.execute(`
       CREATE TABLE IF NOT EXISTS WalkApplications  (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        application_id INT AUTO_INCREMENT PRIMARY KEY,
+        request_id INT NOT NULL,
+        walker_id INT NOT NULL,
         username VARCHAR(50) UNIQUE NOT NULL,
         email VARCHAR (100) UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
