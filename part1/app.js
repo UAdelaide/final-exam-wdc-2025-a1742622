@@ -73,6 +73,7 @@ let db;
         application_id INT AUTO_INCREMENT PRIMARY KEY,
         request_id INT NOT NULL,
         walker_id INT NOT NULL,
+        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         username VARCHAR(50) UNIQUE NOT NULL,
         email VARCHAR (100) UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
