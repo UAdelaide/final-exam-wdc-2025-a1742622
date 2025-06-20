@@ -137,7 +137,43 @@ let db;
   }
 })();
 
-// Route for /api/dogs
+// Route 1 for /api/dogs
+app.get('/api/dogs', async (req, res) => {
+  try {
+    const [dogs] = await db.execute(`
+        SELECT
+            d.name as dog_name,
+            d.size,
+            u.username as owner_username
+      FROM Dogs d
+      JOIN Users u ON d.owner_id = u.user_id
+      ORDER BY d.name
+    `);
+    res.json(dogs);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
+
+// Route 2 for /api/dogs
+app.get('/api/dogs', async (req, res) => {
+  try {
+    const [dogs] = await db.execute(`
+        SELECT
+            d.name as dog_name,
+            d.size,
+            u.username as owner_username
+      FROM Dogs d
+      JOIN Users u ON d.owner_id = u.user_id
+      ORDER BY d.name
+    `);
+    res.json(dogs);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
+
+// Route 1 for /api/dogs
 app.get('/api/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
