@@ -47,8 +47,8 @@ CREATE TABLE WalkRatings (                                              -- store
     owner_id INT NOT NULL,                                              -- which owner is being rated (links to owner table)
     rating INT CHECK (rating BETWEEN 1 AND 5),                          -- the rating
     comments TEXT,                                                      -- the comment
-    rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),
+    rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                       -- created at
+    FOREIGN KEY (request_id) REFERENCES WalkRequests(request_id),       -- FK. walk request actually exists
     FOREIGN KEY (walker_id) REFERENCES Users(user_id),
     FOREIGN KEY (owner_id) REFERENCES Users(user_id),
     CONSTRAINT unique_rating_per_walk UNIQUE (request_id)
