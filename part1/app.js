@@ -193,17 +193,17 @@ app.get('/api/walkers/summary', async (req, res) => {
         FROM Users u
         LEFT JOIN WalkRatings wr ON u.user_id = wr.walker_id
         LEFT JOIN (
-            SELECT
-                wa.walker_id,
-                COUNT(*) as walk_count
-            FROM WalkApplications wa
-            JOIN WalkRequests wreq ON wa.request_id = wreq.request_id
-            WHERE wa.status = 'accepted' AND wreq.status = 'completed'
-            GROUP BY wa.walker_id
-      ) completed_walks ON u.user_id = completed_walks.walker_id
-      WHERE u.role = 'walker'
-      GROUP BY u.user_id, u.username, completed_walks.walk_count
-      ORDER BY u.username
+          SELECT
+            wa.walker_id,
+            COUNT(*) as walk_count
+          FROM WalkApplications wa
+          JOIN WalkRequests wreq ON wa.request_id = wreq.request_id
+          WHERE wa.status = 'accepted' AND wreq.status = 'completed'
+          GROUP BY wa.walker_id
+        ) completed_walks ON u.user_id = completed_walks.walker_id
+        WHERE u.role = 'walker'
+        GROUP BY u.user_id, u.username, completed_walks.walk_count
+        ORDER BY u.username
     `);
     res.json(walkers);
   } catch (err) {
