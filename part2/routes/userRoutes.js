@@ -36,7 +36,11 @@ router.get('/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
       SELECT
-        d.dog_id
+        d.dog_id,
+        d.name as dog_name,
+        d.size,
+        d.owner_id,
+        d
 
     const [rows] = await db.query(`
       SELECT dog_id, name FROM Dogs
