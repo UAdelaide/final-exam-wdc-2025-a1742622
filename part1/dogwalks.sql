@@ -64,7 +64,7 @@ INSERT INTO Users (username, email, password_hash, role) VALUES
 ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
 ('carol123', 'carol@example.com', 'hashed789', 'owner'),
 ('jarrydwong', 'jarryd@example.com', 'hashed012', 'walker'),
-('veronica123', 'veronica@example.com', 'hashed123', 'owner');
+('veronica123', 'veronica@example.com', 'hashed345', 'owner');
 
 -- Dogs:
 INSERT INTO Dogs (owner_id, name, size) VALUES
