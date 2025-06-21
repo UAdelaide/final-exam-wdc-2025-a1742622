@@ -132,66 +132,47 @@
             }
             const dogsData = await response.json();
 
-            // Random dog photos section
-          const dogsWithPhotos = await Promise.all(
-          dogsData.map(async (dog) => {
-            try {
-              const photoResponse = await fetch('https://dog.ceo/api/breeds/image/random');
-              const photoData = await photoResponse.json();
-              return {
-                ...dog,
-                randomPhoto: photoData.message || 'https://via.placeholder.com/80x80?text=No+Photo'
-              };
-            } catch {
-              return {
-                ...dog,
-                randomPhoto: 'https://via.placeholder.com/80x80?text=No+Photo'
-              };
-            }
-          })
-        );
+            // Add random dog photos to each dog
+            const dogsWithPhotos = await Promise.all(
+              dogsData.map(async (dog) => {
+                try {
+                  const photoResponse = await fetch('https://dog.ceo/api/breeds/image/random');
+                  const photoData = await photoResponse.json();
+                  return {
+                    ...dog,
+                    randomPhoto: photoData.message || 'https://via.placeholder.com/80x80?text=No+Photo'
+                  };
+                } catch {
+                  return {
+                    ...dog,
+                    randomPhoto: 'https://via.placeholder.com/80x80?text=No+Photo'
+                  };
+                }
+              })
+            );
 
+            dogs.value = dogsWithPhotos;
+          } catch (err) {
+            console.error('Error fetching dogs:', err);
+            dogs.value = [];
+          } finally {
+            dogsLoading.value = false;
+          }
+        }
 
-                  setup() {
-                      const dogImage = ref('');
-                      const loading = ref(true);
-
-                      const fetchNewDog = async () => {
-                          loading.value = true;
-                          try {
-                              const response = await fetch('https://dog.ceo/api/breeds/image/random');
-                              const data = await response.json();
-                              dogImage.value = data.message;
-                              loading.value = false;
-                          } catch (error) {
-                              console.error('Error fetching dog image:', error);
-                              dogImage.value = 'https://via.placeholder.com/200x200?text=Error+Loading+Dog';
-                              loading.value = false;
-                          }
-                      };
-
-                      onMounted(() => {
-                          fetchNewDog();
-                      });
-
-                      return {
-                          dogImage,
-                          loading,
-                          fetchNewDog
-                      };
-                  }
-              }).mount('#app');
-          </script>
-      </body>
-
-      </html>
+        // Fetch dogs when component mounts
+        onMounted(() => {
+          fetchDogs();
+        });
 
         return {
           message: 'Welcome to the Dog Walking Service!',
           email,
           password,
           error,
-          login
+          login,
+          dogs,
+          dogsLoading
         };
       }
     }).mount('#app');
