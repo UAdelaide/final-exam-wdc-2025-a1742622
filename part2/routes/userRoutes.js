@@ -64,15 +64,13 @@ router.post('/login', async (req, res) => {
 
 // POST logout                                        [added for QUESTION 14]
 router.post('/logout', (req, res) => {
-
-    res.json({
-      message: 'Login successful',
-      user: rows[0],
-      redirectTo: rows[0].role === 'owner' ? '/owner-dashboard.html' : '/walker-dashboard.html' // Redirect section added too
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Login failed' });
-  }
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.clearCookie('connect.sid'); // this clears the session cookie
+    res.json({ message: 'Logout successful' });
+  });
 });
 
 module.exports = router;
