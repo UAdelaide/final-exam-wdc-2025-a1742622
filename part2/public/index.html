@@ -64,6 +64,13 @@
             // Redirect based on user role (inbstead of having the links to the roles above)
             window.location.href = result.redirectTo;
 
+          } catch (err) {
+            error.value = err.message;
+          }
+        }
+
+        
+
 
 
       data() {
