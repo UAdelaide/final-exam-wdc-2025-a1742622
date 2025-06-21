@@ -62,8 +62,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// POST logout                     [added for QUESTION 14]
-    req.session.user = rows[0];
+// POST logout                                        [added for QUESTION 14]
+router.post('/logout', (req, res) => {
 
     res.json({
       message: 'Login successful',
