@@ -58,6 +58,7 @@
             });
 
             const result = await res.json();
+            console.log('Server response:', result);
 
             if (!res.ok) throw new Error(result.error);
 
