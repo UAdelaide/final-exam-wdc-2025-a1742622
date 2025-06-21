@@ -96,6 +96,7 @@
         const dogs = ref([]);
         const dogsLoading = ref(true);
 
+        // Function that allows user to login
         async function login() {
           try {
             const res = await fetch('/api/users/login', {
