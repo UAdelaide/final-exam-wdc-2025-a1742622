@@ -42,17 +42,8 @@ router.get('/dogs', async (req, res) => {
         d.owner_id,
         u.username as owner_username
       FROM Dogs d
-      JOIN Users u ON d.owner_id = u
-
-    const [rows] = await db.query(`
-      SELECT dog_id, name FROM Dogs
-      WHERE owner_id = ?
-    `, [req.session.user.user_id]);
-
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch dogs' });
-  }
+      JOIN Users u ON d.owner_id = u.user_id
+      ORDER BY d.dog_id
 });
 
 // POST a new user (simple signup)
