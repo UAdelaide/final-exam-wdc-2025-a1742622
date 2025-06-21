@@ -92,7 +92,9 @@
         const password = ref('');
         const error = ref('');
 
-        // Dogs
+        // Dogs related reactiuve variables for QUESTION 17
+        const dogs = ref([]);
+        const dogsLoading = ref(true);
 
         async function login() {
           try {
