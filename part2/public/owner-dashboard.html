@@ -105,7 +105,7 @@
         // Added function to load user's dogs             [ADDED FOR QUESTIUON 15]
         async function loadUserDogs() {
           try {
-            const res = await fetch('/api/walks/my-dogs');
+            const res = await fetch('/api/users/my-dogs');
             if (!res.ok) throw new Error('Failed to load dogs');
             userDogs.value = await res.json();
           } catch (err) {
