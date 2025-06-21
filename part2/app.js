@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const session = require('express-session');                 Added for sec
+const session = require('express-session'); // Added for [QUESTION 13]
 require('dotenv').config();
 
 const app = express();
