@@ -120,7 +120,21 @@
         }
 
         // Added Logout Function            (ADDED FOPR QUESTION 14)
+        async function logout() {
+          try {
+            const res = await fetch('/api/users/logout', {
+              method: 'POST'
+            });
 
+            if (res.ok) {
+              window.location.href = '/'; // Redirect to login page
+            }
+          } catch (err) {
+            console.error('Logout failed:', err);
+          }
+        }
+
+        
         onMounted(() => {
           loadWalks();
         });
