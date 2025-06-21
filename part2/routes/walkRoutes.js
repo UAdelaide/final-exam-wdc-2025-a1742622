@@ -59,7 +59,7 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-// GET all logged-in user's walk requests for the owner dashboard (ADDED to fix youtube inconsistency)
-afdafa
+// GET all logged-in user's walk requests for the owner dashboard (not realted to a question)\
+
 
 module.exports = router;
