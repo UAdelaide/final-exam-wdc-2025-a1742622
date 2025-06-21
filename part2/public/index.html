@@ -130,6 +130,9 @@
             if (!response.ok) {
               throw new Error('Failed to fetch dogs');
             }
+            const dogsData = await response.json();
+
+            // Random dog photos section
 
 
         return {
