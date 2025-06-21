@@ -65,16 +65,14 @@ router.get('/my-requests', async (req, res) => {
     if (!req.session.user) {
       return res.status(401).json({ error: 'Not logged in' });
     }
-
     const [rows] = await db.query(`
       SELECT wr.*, d.name AS dog_name, d.size, u.username AS owner_name
       FROM WalkRequests wr
       JOIN Dogs d ON wr.dog_id = d.dog_id
       JOIN Users u ON d.owner_id = u.user_id
-      WHERE d.owner_id = ?
+      WHERE d.owner_id = ? AND wr.status = 'open'
       ORDER BY wr.created_at DESC
     `, [req.session.user.user_id]);
-
     res.json(rows);
   } catch (error) {
     console.error('SQL Error:', error);
