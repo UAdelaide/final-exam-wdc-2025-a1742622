@@ -22,7 +22,8 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="submitWalkRequest">
-          <div class="mb-3">                            // [CHANGED HERE FOR QUESTION 15]
+          <!--                                                [CHANGED QUESTION 15] -->
+          <div class="mb-3">
             <label class="form-label">Dog ID</label>
             <input v-model="form.dog_id" type="number" class="form-control" required>
           </div>
