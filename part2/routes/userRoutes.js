@@ -31,7 +31,7 @@ router.get('/my-dogs', async (req, res) => {
 });
 
 
-// GET logged-in user's dogs                          [ADDED FOR QUESTION 17]
+// GET just dogs for the home page table              [ADDED FOR QUESTION 17]
 router.get('/dogs', async (req, res) => {
   try {
     if (!req.session.user) {
