@@ -96,7 +96,7 @@
         // CHANGED TO SHOW ONLY OWNERS DOGS (not a question segment)
         async function loadWalks() {
           try {
-            const res = await fetch('/api/walks/my-requests');
+            const res = await fetch('/api/walks/my-requests');   // <-- changed the api to my-requests
             walks.value = await res.json();
           } catch (err) {
             error.value = 'Failed to load walk requests';
