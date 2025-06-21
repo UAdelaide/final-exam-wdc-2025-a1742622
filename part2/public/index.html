@@ -58,8 +58,11 @@
             });
 
             const result = await res.json();
-            
+
             if (!res.ok) throw new Error(result.error);
+
+            // Redirect based on user role (inbstead of having the links to the roles above)
+            window.location.href = result.redirectTo;
 
 
 
