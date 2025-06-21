@@ -90,6 +90,9 @@
         const message = ref('');
         const error = ref('');
 
+        // Added userDogs ref                             [ADDED FOR QUESTION 15]
+        const userDogs = ref([]);
+
         async function loadWalks() {
           try {
             const res = await fetch('/api/walks');
