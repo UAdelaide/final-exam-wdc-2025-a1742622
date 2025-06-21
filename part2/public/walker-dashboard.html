@@ -60,7 +60,7 @@
         }
 
         // Added function to get user            Added for [QUESTION 16]
-        async function getUser() {
+        async function getCurrentUser() {
           try {
             const res = await fetch('/api/users/me');
             if (!res.ok) throw new Error('Failed to get user');
