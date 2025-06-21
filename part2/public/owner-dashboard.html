@@ -106,7 +106,12 @@
         async function loadUserDogs() {
           try {
             const res = await fetch('/api/walks/my-dogs');
-            
+            if (!res.ok) throw new Error('Failed to load dogs');
+            userDogs.value = await res.json();
+          } catch (err) {
+            error.value = 'Failed to load your dogs';
+          }
+        }
 
 
         async function submitWalkRequest() {
