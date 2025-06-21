@@ -78,6 +78,20 @@
           }
         }
 
+        // Added Logout Function            (ADDED FOR QUESTION 14)
+        async function logout() {
+          try {
+            const res = await fetch('/api/users/logout', {
+              method: 'POST'
+            });
+            if (res.ok) {
+              window.location.href = '/'; // redirects to login page if logged out
+            }
+          } catch (err) {
+            console.error('Logout failed:', err);
+          }
+        }
+
         onMounted(() => {
           loadWalkRequests();
         });
