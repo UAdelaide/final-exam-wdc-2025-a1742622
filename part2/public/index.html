@@ -122,7 +122,7 @@
         }
 
 
-        // Function to fetch Dogs for table       [QUESTION 17]
+        // Random dog photos section                     [QUESTION 17]
         async function fetchDogs() {
           try {
             dogsLoading.value = true;
@@ -132,7 +132,7 @@
             }
             const dogsData = await response.json();
 
-            // Add random dog photos to each dog
+            // add random dog photos to each dog
             const dogsWithPhotos = await Promise.all(
               dogsData.map(async (dog) => {
                 try {
@@ -160,7 +160,7 @@
           }
         }
 
-        // Fetch dogs when component mounts
+        // fetch dogs when component mounts
         onMounted(() => {
           fetchDogs();
         });
