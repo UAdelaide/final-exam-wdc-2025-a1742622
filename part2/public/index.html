@@ -133,10 +133,13 @@
             const dogsData = await response.json();
 
             // Random dog photos section
-          <script>
-              const { createApp, ref, onMounted } = Vue;
-
-              createApp({
+          const dogsWithPhotos = await Promise.all(
+          dogsData.map(async (dog) => {
+            try {
+              const photoResponse = await fetch('https://dog.ceo/api/breeds/image/random');
+              const photoData = await photoResponse.json();
+              return {
+                ...dog,
                   setup() {
                       const dogImage = ref('');
                       const loading = ref(true);
