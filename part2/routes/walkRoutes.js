@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Added a new route to get dogs from the logged in owner      [ADDED FOR QUESTION 15]
+// Added endpoint to get dogs from the logged in owner      [ADDED FOR QUESTION 15]
 router.get('/my-dogs', async (req, res) => {
   try {
     if (!req.session.user) {
