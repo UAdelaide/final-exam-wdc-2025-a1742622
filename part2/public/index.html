@@ -125,7 +125,11 @@
         // Function to fetch Dogs for table       [QUESTION 17]
         async function fetchDogs() {
           try {
-        dogsLoading.value = true;
+            dogsLoading.value = true;
+            const response = await fetch('/api/users/dogs');
+            if (!response.ok) {
+              throw new Error('Failed to fetch dogs');
+            }
 
 
         return {
