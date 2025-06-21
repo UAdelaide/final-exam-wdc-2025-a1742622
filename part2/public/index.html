@@ -123,7 +123,7 @@
             }
             const dogsData = await response.json();
 
-            // Add random dog photos to each dog
+            // add random dog photos to each dog
             const dogsWithPhotos = await Promise.all(
               dogsData.map(async (dog) => {
                 try {
