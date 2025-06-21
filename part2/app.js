@@ -11,9 +11,14 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // Session related Middleware                               [QUESTION 13]
 app.use(session({
-    secret: '',
-    resave: false,
-    saveUninitialized: false
+  secret: process.env.SESSION_SECRET || 'glockedinsecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  }
 }));
 
 // Routes
