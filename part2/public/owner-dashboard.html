@@ -104,6 +104,9 @@
 
         // Added function to load user's dogs             [ADDED FOR QUESTIUON 15]
         async function loadUserDogs() {
+          try {
+            const res = await fetch('/api/walks/my-dogs');
+            
 
 
         async function submitWalkRequest() {
