@@ -60,7 +60,10 @@
         }
 
         // Added function to get user            Added for [QUESTION 16]
-        asy
+        async function getUser() {
+          try {
+            const res = await fetch('/api/users/me');
+            if (!res.ok) throw new Error('Failed to get current user');
 
         async function applyToWalk(requestId) {
           try {
