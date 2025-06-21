@@ -21,7 +21,12 @@ router.get('/', async (req, res) => {
 
 // Added a new route to get dogs from the logged in owner      [ADDED FOR QUESTION 15]
 router.get('/my-dogs', async (req, res) => {
-    try {
+  try {
+    if (!req.session.user) {
+      return res.status(401).json({ error: 'Not logged in' });
+    }
+
+    const
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
