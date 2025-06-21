@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // Session related Middleware                               [QUESTION 13]
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'glockedinsecret',
+  secret: process.env.SESSION_SECRET || 'groupProjectLoginRecycledLol',
   resave: false,
   saveUninitialized: false,
   cookie: {
