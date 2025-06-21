@@ -29,7 +29,9 @@ router.get('/my-dogs', async (req, res) => {
     const [rows] = await db.query(`
       SELECT dog_id, name, size FROM Dogs
       WHERE owner_id = ?
-      `
+      `, [req.session.user.user_id]);
+
+      
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
