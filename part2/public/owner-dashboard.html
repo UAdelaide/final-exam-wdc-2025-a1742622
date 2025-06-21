@@ -127,14 +127,14 @@
             });
 
             if (res.ok) {
-              window.location.href = '/'; // Redirect to login page
+              window.location.href = '/'; // redirects to login page if logged out
             }
           } catch (err) {
             console.error('Logout failed:', err);
           }
         }
 
-        
+
         onMounted(() => {
           loadWalks();
         });
