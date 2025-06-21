@@ -32,7 +32,6 @@ router.get('/my-dogs', async (req, res) => {
 
 
 // GET just dogs for the home page table              [ADDED FOR QUESTION 17]
-// Add this to part2/routes/walkRoutes.js
 router.get('/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
