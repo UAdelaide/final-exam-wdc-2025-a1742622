@@ -37,45 +37,45 @@
 </div>
 <!-- End of addition -->
 
-  <!-- Dogs table                           added for QUESTION 17 -->
-    <div class="card">
-      <div class="card-header">
-        <h3>All Registered Dogs</h3>
-      </div>
+<!-- Dogs table                           added for QUESTION 17 -->
+<div class="card">
+  <div class="card-header">
+    <h3>All Registered Dogs</h3>
+  </div>
 
-      <div class="card-body">
-        <div v-if="dogsLoading" class="text-center">
-          <p>Loading dogs...</p>
-        </div>
-        <div v-else-if="dogs.length > 0">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Dog ID</th>
-                  <th>Name</th>
-                  <th>Size</th>
-                  <th>Owner ID</th>
-                  <th>Photo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="dog in dogs" :key="dog.dog_name">
-                  <td>{{ dog.dog_id }}</td>
-                  <td>{{ dog.dog_name }}</td>
-                  <td>{{ dog.size }}</td>
-                  <td>{{ dog.owner_id }}</td>
-                  <td>
-                    <img :src="dog.randomPhoto"
-                      alt="Random dog photo"
-                      class="img-thumbnail"
-                      style="width: 80px; height: 80px; object-fit: cover;">
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div class="card-body">
+    <div v-if="dogsLoading" class="text-center">
+      <p>Loading dogs...</p>
+    </div>
+    <div v-else-if="dogs.length > 0">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Dog ID</th>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Owner ID</th>
+              <th>Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="dog in dogs" :key="dog.dog_name">
+              <td>{{ dog.dog_id }}</td>
+              <td>{{ dog.dog_name }}</td>
+              <td>{{ dog.size }}</td>
+              <td>{{ dog.owner_id }}</td>
+              <td>
+                <img :src="dog.randomPhoto"
+                  alt="Random dog photo"
+                  class="img-thumbnail"
+                  style="width: 80px; height: 80px; object-fit: cover;">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div v-else>
       <p>No dogs found.</p>
     </div>
