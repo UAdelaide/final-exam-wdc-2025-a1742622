@@ -26,7 +26,8 @@ router.get('/my-dogs', async (req, res) => {
       return res.status(401).json({ error: 'Not logged in' });
     }
 
-    const
+    const [rows] = await db.query('
+      SELECT dog_id')
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
