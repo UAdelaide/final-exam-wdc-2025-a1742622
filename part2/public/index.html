@@ -39,7 +39,7 @@
 
 
   <script>
-    const { createApp } = Vue;
+    const { createApp, ref } = Vue;
     createApp({
       setup() {
         const email = ref('');
@@ -54,8 +54,8 @@
               body: JSON.stringify({
                 email: email.value,
                 password: password.value
-            })
-          }});
+              })
+            });
 
 
 
