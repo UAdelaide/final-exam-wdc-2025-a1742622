@@ -34,9 +34,9 @@ router.get('/my-dogs', async (req, res) => {
 // GET just dogs for the home page table              [ADDED FOR QUESTION 17]
 router.get('/dogs', async (req, res) => {
   try {
-    if (!req.session.user) {
-      return res.status(401).json({ error: 'Not logged in' });
-    }
+    const [dogs] = await db.execute(`
+      SELECT
+        d.dog_id
 
     const [rows] = await db.query(`
       SELECT dog_id, name FROM Dogs
