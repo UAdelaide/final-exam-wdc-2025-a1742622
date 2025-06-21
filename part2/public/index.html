@@ -45,7 +45,15 @@
 
       <div class="card-body">
         <div v-if="dogsLoading" class="text-center">
-          
+          <p>Loading dogs...</p>
+        </div>
+        <div v-else-if="dogs.length > 0">
+          <div class="table-responsive">
+
+
+
+          </div>
+        </div>
 
       </div>
 
