@@ -62,6 +62,10 @@ router.post('/:id/apply', async (req, res) => {
 // GET all logged-in user's walk requests for the owner dashboard (not realted to a question)
 router.get('/my-requests', async (req, res) => {
   try {
+    if (!req.session.user) {
+      return res.status(401).json({ error: 'Not logged in' });
+    }
+    
     const [rows] = await db.query(`
       SELECT wr.*, d.name AS dog_name, d.size, u.username AS owner_name
       FROM WalkRequests wr
