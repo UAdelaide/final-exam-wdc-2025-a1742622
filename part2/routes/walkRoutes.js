@@ -31,7 +31,11 @@ router.get('/my-dogs', async (req, res) => {
       WHERE owner_id = ?
       `, [req.session.user.user_id]);
 
-      
+      res.json(rows);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
