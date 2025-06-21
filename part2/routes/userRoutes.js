@@ -32,6 +32,7 @@ router.get('/my-dogs', async (req, res) => {
 
 
 // GET just dogs for the home page table              [ADDED FOR QUESTION 17]
+// Add this to part2/routes/walkRoutes.js
 router.get('/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
@@ -44,6 +45,11 @@ router.get('/dogs', async (req, res) => {
       FROM Dogs d
       JOIN Users u ON d.owner_id = u.user_id
       ORDER BY d.dog_id
+    `);
+    res.json(dogs);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
 });
 
 // POST a new user (simple signup)
