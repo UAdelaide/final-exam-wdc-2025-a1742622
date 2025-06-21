@@ -140,6 +140,18 @@
               const photoData = await photoResponse.json();
               return {
                 ...dog,
+                randomPhoto: photoData.message || 'https://via.placeholder.com/80x80?text=No+Photo'
+              };
+            } catch {
+              return {
+                ...dog,
+                randomPhoto: 'https://via.placeholder.com/80x80?text=No+Photo'
+              };
+            }
+          })
+        );
+
+
                   setup() {
                       const dogImage = ref('');
                       const loading = ref(true);
