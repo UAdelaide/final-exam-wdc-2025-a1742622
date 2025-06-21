@@ -74,11 +74,11 @@ router.get('/my-requests', async (req, res) => {
       WHERE d.owner_id = ?
       ORDER BY wr.created_at DESC
     `, [req.session.user.user_id]);
-    
+
     res.json(rows);
   } catch (error) {
     console.error('SQL Error:', error);
-    res.status(500).json({ error: 'Failed to fetch walk requests' });
+    res.status(500).json({ error: 'Failed to fetch your walk requests' });
   }
 });
 
