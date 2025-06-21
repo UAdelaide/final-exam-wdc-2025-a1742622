@@ -93,6 +93,7 @@
         // Added userDogs ref                             [ADDED FOR QUESTION 15]
         const userDogs = ref([]);
 
+        // CHANGED TO SHOW ONLY OWNERS DOGS (not a question segment)
         async function loadWalks() {
           try {
             const res = await fetch('/api/walks');
