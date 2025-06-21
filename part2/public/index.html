@@ -8,95 +8,91 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body class="bg-light">
-
   <div id="app" class="container py-5">
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
-    <!-- Adding login form here for QUESTION 13 -->
-    <div class="card">
-    <div class="card-body">
-      <h3>Login Page [Question 13]</h3>
-    </div>
-    <div class = "card-body">
-      <form @submit.prevent="login">
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input v-model="email" type="email" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Password</label>
-          <input v-model="password" type="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </form>
-
-      <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
-    </div>
-  </div>
-</div>
-<!-- End of addition -->
-
-<!-- Dogs table                           added for QUESTION 17 -->
-<div class="card">
-  <div class="card-header">
-    <h3>All Registered Dogs</h3>
-  </div>
-
-  <div class="card-body">
-    <div v-if="dogsLoading" class="text-center">
-      <p>Loading dogs...</p>
-    </div>
-    <div v-else-if="dogs.length > 0">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Dog ID</th>
-              <th>Name</th>
-              <th>Size</th>
-              <th>Owner ID</th>
-              <th>Photo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="dog in dogs" :key="dog.dog_name">
-              <td>{{ dog.dog_id }}</td>
-              <td>{{ dog.dog_name }}</td>
-              <td>{{ dog.size }}</td>
-              <td>{{ dog.owner_id }}</td>
-              <td>
-                <img :src="dog.randomPhoto"
-                  alt="Random dog photo"
-                  class="img-thumbnail"
-                  style="width: 80px; height: 80px; object-fit: cover;">
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Login form for QUESTION 13 -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h3>Login Page [Question 13]</h3>
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="login">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input v-model="email" type="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input v-model="password" type="password" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
       </div>
     </div>
-    <div v-else>
-      <p>No dogs found.</p>
+
+    <!-- Dogs table added for QUESTION 17 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>All Registered Dogs</h3>
+      </div>
+      <div class="card-body">
+        <div v-if="dogsLoading" class="text-center">
+          <p>Loading dogs...</p>
+        </div>
+        <div v-else-if="dogs.length > 0">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Dog ID</th>
+                  <th>Name</th>
+                  <th>Size</th>
+                  <th>Owner ID</th>
+                  <th>Photo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="dog in dogs" :key="dog.dog_name">
+                  <td>{{ dog.dog_id }}</td>
+                  <td>{{ dog.dog_name }}</td>
+                  <td>{{ dog.size }}</td>
+                  <td>{{ dog.owner_id }}</td>
+                  <td>
+                    <img :src="dog.randomPhoto"
+                      alt="Random dog photo"
+                      class="img-thumbnail"
+                      style="width: 80px; height: 80px; object-fit: cover;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div v-else>
+          <p>No dogs found.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Changed for QUESTION 13 -->
   <script>
-    const { createApp, ref } = Vue;
+    const { createApp, ref, onMounted } = Vue;
+
     createApp({
       setup() {
-        // Login section (question 13 i think?)
+        // Login-related reactive variables
         const email = ref('');
         const password = ref('');
         const error = ref('');
 
-        // Dogs related reactiuve variables for QUESTION 17
+        // Dogs-related reactive variables
         const dogs = ref([]);
         const dogsLoading = ref(true);
 
-        // Function that allows user to login   // [Question 13]
+        // Login function
         async function login() {
           try {
             const res = await fetch('/api/users/login', {
@@ -107,22 +103,17 @@
                 password: password.value
               })
             });
-
             const result = await res.json();
             console.log('Server response:', result);
-
             if (!res.ok) throw new Error(result.error);
-
-            // Redirect based on user role (inbstead of having the links to the roles above)
+            // Redirect based on user role
             window.location.href = result.redirectTo;
-
           } catch (err) {
             error.value = err.message;
           }
         }
 
-
-        // Random dog photos section                     [QUESTION 17]
+        // Function to fetch dogs
         async function fetchDogs() {
           try {
             dogsLoading.value = true;
@@ -132,7 +123,7 @@
             }
             const dogsData = await response.json();
 
-            // add random dog photos to each dog
+            // Add random dog photos to each dog
             const dogsWithPhotos = await Promise.all(
               dogsData.map(async (dog) => {
                 try {
@@ -160,7 +151,7 @@
           }
         }
 
-        // fetch dogs when component mounts
+        // Fetch dogs when component mounts
         onMounted(() => {
           fetchDogs();
         });
@@ -172,7 +163,7 @@
           error,
           login,
           dogs,
-          dogsLoading                 // ADDED FOR QUESTION 17
+          dogsLoading
         };
       }
     }).mount('#app');
