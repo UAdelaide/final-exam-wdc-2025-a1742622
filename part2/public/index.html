@@ -87,9 +87,12 @@
     const { createApp, ref } = Vue;
     createApp({
       setup() {
+        // Login section (question 13 i think?)
         const email = ref('');
         const password = ref('');
         const error = ref('');
+
+        // Dogs
 
         async function login() {
           try {
