@@ -24,14 +24,14 @@
         <form @submit.prevent="submitWalkRequest">
           <!-- Changed Dog ID                                     [Changed for QUESTION 15] -->
           <div class="mb-3">
-  <label class="form-label">Select Your Dog</label>
-  <select v-model="form.dog_id" class="form-control" required>
-    <option value="">Choose a dog...</option>
-    <option v-for="dog in userDogs" :key="dog.dog_id" :value="dog.dog_id">
-      {{ dog.name }} ({{ dog.size }})
-    </option>
-  </select>
-</div>
+            <label class="form-label">Select Your Dog</label>
+            <select v-model="form.dog_id" class="form-control" required>
+              <option value="">Choose your dog</option>
+              <option v-for="dog in userDogs" :key="dog.dog_id" :value="dog.dog_id">
+                {{ dog.name }} ({{ dog.size }})
+              </option>
+            </select>
+          </div>
           <div class="mb-3">
             <label class="form-label">Requested Date & Time</label>
             <input v-model="form.requested_time" type="datetime-local" class="form-control" required>
